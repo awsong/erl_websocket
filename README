@@ -1,0 +1,12 @@
+This is a bare minimal Erlang WebSocket implementation, of latest draft-hybi-10,
+with both Server and client.
+
+Comparing to previous versions of WebSocket spec, the data framing is much more
+efficient. 
+
+Some figures I tested on two virtual machines, each of which has 8G ram and 2 
+CPU core of Intel(R) Xeon(R) CPU E5410  @ 2.33GHz
+1. Takes about 90s to establish 400K connections.
+2. Takes about 5.5G memory in total.
+3. Takes 6s to broadcast 512 bytes message to each of the connections. Highest
+   bandwidth I saw was about 60M byte/s.

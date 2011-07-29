@@ -1,0 +1,12 @@
+{application, ewsc,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { ewsc_app, []}},
+  {env, []}
+ ]}.
