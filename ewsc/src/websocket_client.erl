@@ -112,7 +112,7 @@ handshake_loop(State) ->
 		?CONNECTING ->
 		    Headers = State#state.headers,
 		    RequiredHeaders = [
-			{'Upgrade', "WebSocket"},
+			{'Upgrade', "websocket"},
 			{'Connection', "Upgrade"},
 			{"Sec-Websocket-Accept", ignore}
 		    ],
@@ -302,7 +302,7 @@ initial_request(Host,Path) ->
     {Key,Accept} = generateKeyAccept(),
     Req = "GET "++ Path ++" HTTP/1.1\r\n" ++
 	"Host: " ++ Host ++ "\r\n" ++
-	"Upgrade: WebSocket\r\n" ++
+	"Upgrade: websocket\r\n" ++
 	"Connection: Upgrade\r\n" ++ 
 	"Sec-Websocket-Key: " ++ Key ++ "\r\n" ++
 	"Sec-Websocket-Origin: http://" ++ Host ++ "\r\n" ++
