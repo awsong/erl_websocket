@@ -292,11 +292,12 @@ handle_data(Data,Buffer,State) ->
 %% spec generateKeyAccept() -> {string,string}
 generateKeyAccept() ->
     random:seed(erlang:now()),
-    KeyString = binary:bin_to_list(crypto:rand_bytes(16)),
-    AcceptString = KeyString ++ "258EAFA5-E914-47DA-95CA-C5AB0DC85B11",
-    Key = binary:bin_to_list(base64:encode(KeyString)),
-    Accept = binary:bin_to_list(base64:encode(AcceptString)),
-    {Key, Accept}.
+    Key = crypto:rand_bytes(16),
+    KeyString = base64:encode_to_string(Key),
+    A = binary:list_to_bin(KeyString ++ "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"),
+    Accept = base64:encode_to_string(crypto:sha(A)),
+    {KeyString, Accept}.
+
 
 initial_request(Host,Path) ->
     {Key,Accept} = generateKeyAccept(),

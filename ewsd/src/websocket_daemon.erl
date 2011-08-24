@@ -94,7 +94,7 @@ handshake_loop(State) ->
 	    Headers = State#state.headers,
 	    RequiredHeaders = [
 		{'Host', ignore},
-		{'Upgrade', "WebSocket"},
+		{'Upgrade', "websocket"},
 		{'Connection', "Upgrade"},
 		{"Sec-WebSocket-Key", ignore},
 		{"Sec-WebSocket-Origin", ignore},
@@ -108,7 +108,7 @@ handshake_loop(State) ->
 		    AcceptString = <<KeyString/binary, <<"258EAFA5-E914-47DA-95CA-C5AB0DC85B11">>/binary>>,
 		    Accept = base64:encode_to_string(AcceptString),
 		    Res = "HTTP/1.1 101 Switching Protocols\r\n" ++
-			"Upgrade: WebSocket\r\n" ++
+			"Upgrade: websocket\r\n" ++
 			"Connection: Upgrade\r\n" ++ 
 			"Sec-WebSocket-Accept: " ++ Accept ++ "\r\n\r\n",
 		    gen_tcp:send(Socket,Res),
